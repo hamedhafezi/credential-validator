@@ -11,16 +11,3 @@ export async function verify(token: string): Promise<any> {
     subject: sub,
   });
 }
-// import { importPKCS8, jwtVerify, JWTVerifyResult } from "jose";
-// import config from "config";
-// export async function verify(
-//   jwt: string | Uint8Array
-// ): Promise<JWTVerifyResult> {
-//   const key: string = config.get("SECRET_KEY");
-//   console.log(key);
-
-//   const ecPrivateKey = await importPKCS8(key, "HS256");
-//   return jwtVerify(jwt, ecPrivateKey, {
-//     subject: "my_subject",
-//   });
-// }
