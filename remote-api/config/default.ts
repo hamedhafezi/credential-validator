@@ -1,0 +1,29 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+const {
+  HTTP_METHOD,
+  URL,
+  AUTH_METHOD,
+  USER_NAME_KEY,
+  PASSWORD_KEY,
+  PASSWORD_HASH_ALG,
+  CREDENTIAL_CONTAINER,
+  HEADER_NAME,
+  JWT_PREFIX,
+  JWT_KEY,
+  PORT,
+} = process.env;
+module.exports = {
+  HTTP_METHOD,
+  URL,
+  AUTH_METHOD,
+  USER_NAME_KEY,
+  PASSWORD_KEY,
+  PASSWORD_HASH_ALG,
+  CREDENTIAL_CONTAINER,
+  HEADER_NAME,
+  JWT_PREFIX,
+  JWT_KEY,
+  PORT,
+};
