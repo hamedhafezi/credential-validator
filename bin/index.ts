@@ -80,7 +80,7 @@ async function symmetricJWTInit(answers: any) {
   await cleanUp(Template.JWT_SYMMETRIC);
 }
 async function asymmetricJWTInit(answers: any) {
-  console.log(answers);
+  // console.log(answers);
   createJwtSymmetricEnvFile({ ...answers });
   await cleanUp(Template.JWT_ASYMMETRIC);
 }
@@ -100,6 +100,13 @@ async function cleanUp(temp: Template) {
   fs.rm(path.join(__dirname, "..", "bin"), { recursive: true }, (err) => {
     if (err) throw err;
   });
+  fs.rm(
+    path.join(__dirname, "..", "tsconfig.json"),
+    { recursive: true },
+    (err) => {
+      if (err) throw err;
+    }
+  );
   execa("yarn", { cwd: path.join(__dirname, "..") }).stdout.pipe(
     process.stdout
   );
