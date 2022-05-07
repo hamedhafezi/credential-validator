@@ -1,0 +1,34 @@
+{
+  "name": "credential-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "ts-node bin/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamedhafezi/credential-validator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hamedhafezi/credential-validator/issues"
+  },
+  "homepage": "https://github.com/hamedhafezi/credential-validator#readme",
+  "dependencies": {
+    "execa": "^1.0.0",
+    "inquirer": "^8.2.4",
+    "ncp": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/execa": "^0.9.0",
+    "@types/inquirer": "^8.2.0",
+    "@types/ncp": "^2.0.5",
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  }
+}
