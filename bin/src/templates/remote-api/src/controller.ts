@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "./auth.service";
-import { NoTokenProvided } from "./error/exceptions";
+import { HttpStatus } from "./error";
+import { NoTokenProvided, Unauthorized } from "./error/exceptions";
 
 class Controller {
   async verify(req: Request, res: Response, next: NextFunction) {
@@ -14,9 +15,13 @@ class Controller {
         req.body?.password || basicAuthCredentials.password,
         req.body?.token || req.headers["x-auth-key"]
       );
-      res.sendStatus(200);
+      res.status(HttpStatus.OK).json({
+        success: true,
+        statusCode: HttpStatus.OK,
+        message: "Successfully loged-in",
+      });
     } catch (error) {
-      next(new NoTokenProvided());
+      next(new Unauthorized());
     }
   }
 }
