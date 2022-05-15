@@ -10,7 +10,7 @@ import {
 const PORT = 8081;
 export function createFile(pth: string, content: string) {
   fs.writeFile(pth, content, (err) => {
-    console.log(err);
+    if(err) throw err;
   });
 }
 function pathCreator(templateName: string) {
