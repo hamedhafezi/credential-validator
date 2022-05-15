@@ -107,13 +107,15 @@ async function cleanUp(temp: Template) {
       if (err) throw err;
     }
   );
-  execa("yarn", { cwd: path.join(__dirname, "..") }).stdout.pipe(
-    process.stdout
-  );
-  // process.on("exit", () => {
-  //   fs.rmSync(path.join(__dirname, "..", "bin"), { recursive: true });
-  //   fs.rmSync(path.join(__dirname, "..", ".git"), { recursive: true });
-  // });
+  const yarnRunner = execa("yarn", { cwd: path.join(__dirname, "..") });
+  yarnRunner.on("error", function () {
+    execa("npm i", {
+      cwd: path.join(__dirname, ".."),
+    }).stdout.pipe(process.stdout);
+  });
+  yarnRunner.on("message", function () {
+    yarnRunner.stdout.pipe(process.stdout);
+  });
 }
 function removeLock() {
   const yarnLock = "yarn.lock";
