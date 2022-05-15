@@ -4,7 +4,7 @@ import config from "config";
 import { InvalidENV } from "./error/exceptions";
 
 const HTTP_METHOD: "get" | "post" = config.get("HTTP_METHOD");
-const AUTH_METHOD: "jwt" | "basic-auth" = config.get("AUTH_METHOD");
+const AUTH_METHOD: "jwt" | "Basic auth" = config.get("AUTH_METHOD");
 const JWT_PREFIX: string = config.get("JWT_PREFIX");
 const URL: string = config.get("URL");
 const JWT_KEY: string = config.get("JWT_KEY");
@@ -30,7 +30,7 @@ export async function verify(
   let auth;
   let pass = password;
 
-  if (PASSWORD_HASH_ALG === "Plain") {
+  if (PASSWORD_HASH_ALG !== "Plain") {
     pass = hash(password, PASSWORD_HASH_ALG);
   }
   if (AUTH_METHOD === "basic-auth") {
