@@ -25,15 +25,15 @@ export async function verify(
   password: string,
   token?: string
 ) {
-  let data;
-  let headers;
-  let auth;
+  let data: any;
+  let headers: any;
+  let auth: any;
   let pass = password;
 
   if (PASSWORD_HASH_ALG !== "Plain") {
     pass = hash(password, PASSWORD_HASH_ALG);
   }
-  if (AUTH_METHOD === "basic-auth") {
+  if (AUTH_METHOD === "Basic auth") {
     if (CREDENTIAL_CONTAINER === "body") {
       data = {
         [USER_NAME_KEY]: username,
@@ -62,43 +62,6 @@ export async function verify(
   } else {
     throw new InvalidENV("Auth method must be 'basic-auth' or 'jwt'");
   }
-
-  // if (CREDENTIAL_CONTAINER === "body") {
-  //   if (AUTH_METHOD === "basic-auth") {
-  //     data = {
-  //       [USER_NAME_KEY]: username,
-  //       [PASSWORD_KEY]: pass,
-  //     };
-  //   } else if (AUTH_METHOD === "jwt") {
-  //     data = {
-  //       [JWT_KEY]: `${JWT_PREFIX} ${token}`,
-  //     };
-  //   } else {
-  //     throw new InvalidENV("Auth method must be 'basic-auth' or 'jwt'");
-  //   }
-  // }
-
-  // if (CREDENTIAL_CONTAINER === "header") {
-  //   if (AUTH_METHOD === "basic-auth") {
-  //     auth = {
-  //       username,
-  //       password: pass,
-  //     };
-  //   } else if (AUTH_METHOD === "jwt") {
-  //     headers = {
-  //       [HEADER_NAME]: `${JWT_PREFIX} ${token}`,
-  //     };
-  //   } else {
-  //     throw new InvalidENV("Auth method must be 'basic-auth' or 'jwt'");
-  //   }
-  // }
-  console.log({
-    url: URL,
-    method: HTTP_METHOD,
-    data,
-    headers,
-    auth,
-  });
 
   const response = axios({
     url: URL,
