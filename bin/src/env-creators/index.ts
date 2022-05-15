@@ -41,7 +41,7 @@ export function createJwtSymmetricEnvFile({
 }: ISymmetricJWTAnswers) {
   createFile(
     pathCreator(Template.JWT_SYMMETRIC),
-    `JWT_SECRET=${secretKey}\nSUB_PAYLOAD=${subPayload}\nALG=${alg}\nHEADER_KEY=${headerKey}\nPORT=${PORT}`
+    `SECRET_KEY=${secretKey}\nSUB_PAYLOAD=${subPayload}\nALG=${alg}\nHEADER_KEY=${headerKey}\nPORT=${PORT}`
   );
 }
 export function createRemoteApiEnvFile({
